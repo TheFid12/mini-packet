@@ -1,4 +1,3 @@
-from __future__ import annotations
 from functools import lru_cache
 from .utils import check_non_negative_int
 
