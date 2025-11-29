@@ -1,4 +1,5 @@
 from typing import Iterable, List
+from .utils import to_int_list
 
 
 __all__ = [
@@ -11,16 +12,8 @@ __all__ = [
 ]
 
 
-def _to_int_list(values: Iterable[int]) -> List[int]:
-    res = list(values)
-    for x in res:
-        if not isinstance(x, int):
-            raise TypeError("Ожидаются целые числа")
-    return res
-
-
 def bubble_sort(values: Iterable[int]) -> List[int]:
-    arr = _to_int_list(values)
+    arr = to_int_list(values)
     n = len(arr)
     for i in range(n):
         sp = False
@@ -34,7 +27,7 @@ def bubble_sort(values: Iterable[int]) -> List[int]:
 
 
 def counting_sort(values: Iterable[int]) -> List[int]:
-    arr=_to_int_list(values)
+    arr=to_int_list(values)
     max_val = max(arr)
     cnt = [0] * (max_val + 1)
     while len(arr) > 0:
@@ -48,7 +41,7 @@ def counting_sort(values: Iterable[int]) -> List[int]:
 
 
 def quick_sort(values: Iterable[int]) -> List[int]:
-    arr = _to_int_list(values)
+    arr = to_int_list(values)
     if len(arr) < 2:
         return arr
     stack = [(0, len(arr) - 1)]
@@ -75,7 +68,7 @@ def quick_sort(values: Iterable[int]) -> List[int]:
 
 
 def radix_sort(values: Iterable[int], base: int = 10) -> List[int]:
-    arr = _to_int_list(values)
+    arr = to_int_list(values)
     max_digits = max([len(str(x)) for x in arr])
     bins = [[] for _ in range(base)]
     for i in range(0, max_digits):
@@ -83,8 +76,6 @@ def radix_sort(values: Iterable[int], base: int = 10) -> List[int]:
             digit = (x // base ** i) % base 
             bins[digit].append(x)
         arr = [x for queue in bins for x in queue]
-        print(arr)
-        print(bins)
         bins = [[] for _ in range(base)]
     return arr
 
@@ -116,7 +107,7 @@ def bucket_sort(values: Iterable[float], buckets: int | None = None) -> List[flo
 
 
 def heap_sort(arr: Iterable[int]) -> List[int]:
-    arr = _to_int_list(arr)
+    arr = to_int_list(arr)
 
 
     def heapify(arr, n, i):
@@ -138,3 +129,4 @@ def heap_sort(arr: Iterable[int]) -> List[int]:
     for i in range(n-1, 0, -1):
         arr[i], arr[0] = arr[0], arr[i]
         heapify(arr, i, 0)
+    return arr
