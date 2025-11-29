@@ -71,9 +71,12 @@ def sort_cmd(
         typer.echo("Стек отсортирован")
         return
     try:
-        numbers = [int(x) for x in raw_items]
+        if method == "bucket":
+            numbers = [float(x) for x in raw_items]
+        else:
+            numbers = [int(x) for x in raw_items]
     except ValueError:
-        typer.echo("Ожидались числа или 'stack'", err=True)
+        typer.echo("Неверный формат: введите целые числа или 'stack'", err=True)
         raise typer.Exit(1)
     try:
         result = SortingHelpers.apply_sort(method, numbers, base=base, buckets=buckets)
