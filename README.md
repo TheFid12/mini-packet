@@ -175,35 +175,6 @@ pytest tests/test_algorithms.py::TestFactorial -v
 Файл `tests/test_sorting_generated.py` :
 
 ---
-
-## Примеры использования
-
-### Программное использование
-
-```python
-from src.algorithms import factorial, fib
-from src.sorting import quick_sort, bucket_sort
-from src.structures import QueueViaStacks
-from src.test_generators import rand_int_array
-
-print(factorial(5))  # 120
-print(fib(10))       # 55
-
-data = [5, 2, 8, 1, 9]
-print(quick_sort(data))  # [1, 2, 5, 8, 9]
-
-floats = [0.5, 0.1, 0.9, 0.3]
-print(bucket_sort(floats))  # [0.1, 0.3, 0.5, 0.9]
-
-queue = QueueViaStacks()
-queue.enqueue(1)
-queue.enqueue(2)
-print(queue.dequeue())  # 1
-
-test_data = rand_int_array(100, 0, 1000, seed=42)
-sorted_data = quick_sort(test_data)
-```
-
 ### CLI использование
 
 ```bash
@@ -221,12 +192,3 @@ mini-packet > stack-show
 5
 mini-packet > exit
 ```
-
----
-
-Установка:
-```bash
-pip install pytest typer click-repl
-```
-
----
